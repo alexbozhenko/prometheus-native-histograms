@@ -3,7 +3,7 @@ networks:
 
 services:
   prometheus:
-    image: prom/prometheus:v2.55.0
+    image: prom/prometheus:v3.11.2
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
     command:
@@ -11,16 +11,15 @@ services:
       - "--storage.tsdb.path=/prometheus"
       - "--web.console.libraries=/usr/share/prometheus/console_libraries"
       - "--web.console.templates=/usr/share/prometheus/consoles"
-      - "--enable-feature=native-histograms"
     ports:
       - 9090:9090
     networks:
       - native-histo
 
   grafana:
-    image: grafana/grafana:11.3.0
+    image: grafana/grafana:13.0.1
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=password
+      - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_AUTH_ANONYMOUS_ENABLED=true
     volumes:
       - ./datasource.yml:/etc/grafana/provisioning/datasources/datasource.yml:ro
