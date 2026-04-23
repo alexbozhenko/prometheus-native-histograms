@@ -1,6 +1,4 @@
-FROM golang:1.19.2-alpine3.16 as build
-
-ENV GO111MODULE=on
+FROM golang:1.26.2-alpine as build
 
 WORKDIR /go/src/github.com/laupse/native_histograms
 COPY go.* .
@@ -11,7 +9,7 @@ COPY main.go .
 
 RUN go build -o /go/bin/native_histograms
 
-FROM alpine:3.16
+FROM alpine:3.23
 
 COPY --from=build /go/bin/native_histograms /go/bin/
 

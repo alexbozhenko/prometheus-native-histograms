@@ -29,7 +29,8 @@ func NewMetrics(reg prometheus.Registerer, normMean, normDomain float64) *metric
 			Help:    "RPC latency distributions.",
 			Buckets: prometheus.ExponentialBuckets(2, 2, 5),
 		}),
-		rpcDurationsNativeHistogram: prometheus.NewHistogram(prometheus.HistogramOpts{
+		rpcDurationsNativeHistogram: 
+		prometheus.NewHistogram(prometheus.HistogramOpts{
 			Name:                        "rpc_durations_native_histogram_seconds",
 			Help:                        "RPC latency distributions.",
 			Buckets:                     nil,
